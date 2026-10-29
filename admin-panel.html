@@ -9,65 +9,98 @@
   .container { width: 100%; max-width: 500px; background: #18181b; padding: 32px; border-radius: 16px; border: 1px solid #27272a; }
   h2 { margin-bottom: 24px; text-align: center; }
   input, select { width: 100%; padding: 12px; margin-bottom: 16px; background: #121214; border: 1px solid #27272a; color: #fff; border-radius: 8px; font-size: 15px; }
-  button { width: 100%; padding: 14px; background: #fff; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; }
+  input:focus, select:focus { outline: none; border-color: #52525b; }
+  button { width: 100%; padding: 14px; background: #fff; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s; }
   button:hover { background: #e4e4e7; }
-  button:disabled { opacity: 0.5; }
-  #mesaj { text-align: center; margin-top: 16px; font-weight: bold; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  #mesaj { text-align: center; margin-top: 16px; font-weight: bold; font-size: 14px; line-height: 1.5; }
 </style>
 </head>
 <body>
 <div class="container">
   <h2>Yeni Forma / Logo Ekle</h2>
-  <input type="text" id="team" placeholder="Takım Adı (Örn: Fenerbahçe)">
+  
+  <input type="text" id="team" placeholder="Takım Adı (Örn: Fenerbahçe) *Zorunlu">
   <input type="text" id="label" placeholder="Forma Türü (Örn: Home Kit)">
   <input type="text" id="sub" placeholder="Alt Başlık (Örn: İç Saha)">
+  
   <select id="category">
     <option value="kits">Forma Kiti</option>
     <option value="logos">Kulüp Logosu</option>
     <option value="national">Milli Takım</option>
     <option value="premium">Premium</option>
   </select>
-  <input type="text" id="url" placeholder="Görsel URL'si (https://...)">
+  
+  <input type="text" id="url" placeholder="Görsel URL'si (https://...) *Zorunlu">
   <input type="text" id="country" placeholder="Ülke (Örn: Türkiye)">
   <input type="text" id="flag" placeholder="Bayrak Emojisi (Örn: 🇹🇷)">
+  
   <button id="ekleBtn" onclick="formaEkle()">Sisteme Ekle</button>
   <div id="mesaj"></div>
 </div>
+
 <script>
 async function formaEkle() {
   const btn = document.getElementById('ekleBtn');
   const mesaj = document.getElementById('mesaj');
-  btn.innerText = 'Ekleniyor...'; btn.disabled = true; mesaj.innerText = '';
+  
+  // Butonu kilitle ve mesajı temizle
+  btn.innerText = 'Ekleniyor...'; 
+  btn.disabled = true; 
+  mesaj.innerText = '';
 
+  // Form verilerini al
   const data = {
     token: '#Coogle29.10.26',
-    team: document.getElementById('team').value,
-    label: document.getElementById('label').value,
-    sub: document.getElementById('sub').value,
+    team: document.getElementById('team').value.trim(),
+    label: document.getElementById('label').value.trim() || 'Forma',
+    sub: document.getElementById('sub').value.trim() || 'Detay',
     category: document.getElementById('category').value,
-    url: document.getElementById('url').value,
-    country: document.getElementById('country').value,
-    flag: document.getElementById('flag').value
+    url: document.getElementById('url').value.trim(),
+    country: document.getElementById('country').value.trim() || 'Bilinmeyen',
+    flag: document.getElementById('flag').value.trim() || '🏳️'
   };
 
+  // Zorunlu alan kontrolü
+  if (!data.team || !data.url) {
+    mesaj.style.color = '#ef4444'; 
+    mesaj.innerText = '✗ Lütfen Takım Adı ve Görsel URL alanlarını doldurun!';
+    btn.innerText = 'Sisteme Ekle'; 
+    btn.disabled = false;
+    return;
+  }
+
   try {
-    // YENİ VERCEL LİNKİMİZ BURAYA EKLENDİ
+    // API'ye istek at
     const res = await fetch('https://flkits-api.vercel.app/api/kits', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
     
+    // API'den dönen cevabı JSON olarak al (Hata mesajı varsa yakalamak için)
+    const result = await res.json();
+
     if (res.ok) {
-      mesaj.style.color = '#22c55e'; mesaj.innerText = '✓ Başarıyla eklendi!';
+      mesaj.style.color = '#22c55e'; 
+      mesaj.innerText = '✓ Başarıyla eklendi! Ana sayfayı yenileyerek kontrol edebilirsin.';
+      
+      // Başarılıysa formu temizle
       document.querySelectorAll('input').forEach(i => i.value = '');
     } else {
-      mesaj.style.color = '#ef4444'; mesaj.innerText = '✗ Hata oluştu (Token veya veritabanı).';
+      // Eğer hata varsa (Token yanlış veya Veritabanı bağlı değilse)
+      mesaj.style.color = '#ef4444'; 
+      mesaj.innerText = '✗ Hata: ' + (result.error || 'Bilinmeyen bir sorun oluştu.');
     }
   } catch (err) {
-    mesaj.style.color = '#ef4444'; mesaj.innerText = '✗ Sunucuya bağlanılamadı.';
+    mesaj.style.color = '#ef4444'; 
+    mesaj.innerText = '✗ Sunucuya bağlanılamadı. API çökmüş olabilir.';
+    console.error(err);
   }
-  btn.innerText = 'Sisteme Ekle'; btn.disabled = false;
+  
+  // Butonu eski haline getir
+  btn.innerText = 'Sisteme Ekle'; 
+  btn.disabled = false;
 }
 </script>
 </body>
