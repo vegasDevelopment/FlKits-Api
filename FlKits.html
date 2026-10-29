@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FL Kits - Forma ve Logo Koleksiyonu</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-surface: #121214;
+    --bg-card: #18181b;
+    --border: #27272a;
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+    --primary: #ffffff;
+    --success: #22c55e;
+    --premium: #eab308; /* Premium Altın Rengi */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Açık Tema Değişkenleri */
+  body.light-mode {
+    --bg: #f4f4f5;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --border: #e4e4e7;
+    --text-main: #09090b;
+    --text-muted: #71717a;
+    --primary: #000000;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  /* --- NAVBAR --- */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: var(--bg-surface);
+    opacity: 0.95;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 100;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-main);
+    user-select: none;
+  }
+  
+  .nav-left:hover .nav-logo-icon {
+    background: var(--text-muted);
+    color: var(--bg);
+  }
+
+  .nav-logo-icon {
+    width: 32px; height: 32px;
+    background: var(--border);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    color: var(--text-main);
+    transition: all 0.2s;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  
+  .nav-icon-btn:hover { color: var(--text-main); }
+  .nav-icon-btn svg { width: 20px; height: 20px; }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* --- SIDE MENU --- */
+  .side-menu {
+    position: fixed;
+    top: 0; right: -300px;
+    width: 300px; height: 100vh;
+    background: var(--bg-surface);
+    border-left: 1px solid var(--border);
+    z-index: 200;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+  }
+  .side-menu.open { right: 0; }
+  .side-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+  }
+  .close-menu {
+    background: none; border: none; color: var(--text-main); font-size: 24px; cursor: pointer;
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .menu-item:hover, .menu-item.active {
+    background: var(--border);
+  }
+  .menu-item svg { width: 18px; height: 18px; color: var(--text-muted); }
+  
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 150;
+    display: none;
+  }
+  .menu-overlay.open { display: block; }
+
+  /* --- HERO SECTION --- */
+  .hero {
+    padding: 120px 20px 60px;
+    text-align: center;
+    position: relative;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0343-2627-1-YG2nK6J.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    filter: blur(10px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  /* Search Bar */
+  .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+
+  .search-container svg {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px; height: 22px;
+    color: var(--text-muted);
+  }
+
+  .search-input {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px 18px 56px;
+    color: var(--text-main);
+    font-size: 16px;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border-color 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .search-input:focus { border-color: #52525b; }
+
+  /* Badges */
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .badge-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  .badge-item svg { width: 16px; height: 16px; }
+  .text-blue { color: #3b82f6; }
+  .text-orange { color: #f97316; }
+  .text-purple { color: #a855f7; }
+
+  /* --- MAIN CONTENT --- */
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 20px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  /* --- ÜLKELERE GÖRE LOGOLAR BÖLÜMÜ --- */
+  .country-logos-section {
+    display: none; 
+    margin-bottom: 32px; 
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .country-logos-title {
+    font-size: 18px; 
+    font-weight: 700;
+    margin-bottom: 12px; 
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .country-logos-title svg {
+    width: 20px; 
+    height: 20px;
+  }
+
+  .country-logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+  }
+
+  .country-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px; 
+    padding: 8px 12px; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .country-card:hover {
+    border-color: #52525b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .country-flag {
+    font-size: 20px; 
+    line-height: 1;
+  }
+
+  .country-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .country-name {
+    font-size: 14px; 
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .country-count {
+    font-size: 11px; 
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* --- STANDART GRID --- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #52525b;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  .card-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  /* Oyundan görüntüler için özel kart tasarımı (Yatay) */
+  .screenshot-card {
+    padding: 16px;
+  }
+  .screenshot-card .card-img-wrapper {
+    aspect-ratio: 16 / 9; 
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .screenshot-card .card-img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    filter: none;
+    transition: transform 0.3s;
+  }
+  .screenshot-card:hover .card-img-wrapper img {
+    transform: scale(1.03);
+  }
+
+  .card-img-wrapper img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+    transition: transform 0.3s;
+  }
+
+  .card:hover .card-img-wrapper img {
+    transform: scale(1.05);
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .card-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Kopyalama Butonu (Kart Üzerinde) */
+  .copy-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0;
+    z-index: 2;
+  }
+
+  .card:hover .copy-btn { opacity: 1; }
+  .copy-btn:hover { background: var(--primary); color: var(--bg); }
+  .copy-btn svg { width: 16px; height: 16px; }
+  
+  .copy-btn.copied { opacity: 1; }
+
+  /* Premium PRO Etiketi */
+  .pro-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    color: #000;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.3);
+  }
+
+  /* Premium Kart Stili */
+  .premium-card {
+    border-color: rgba(234, 179, 8, 0.3);
+  }
+  .premium-card:hover {
+    border-color: var(--premium);
+    box-shadow: 0 10px 30px rgba(234, 179, 8, 0.1);
+  }
+
+  /* --- YENİ EKLENENLER (TİMELİNE) BÖLÜMÜ --- */
+  .newly-added-section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .date-group {
+    margin-bottom: 48px;
+  }
+
+  .date-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .date-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    white-space: nowrap;
+  }
+
+  .date-title svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-muted);
+  }
+
+  .date-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .date-count {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .timeline-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    text-align: center;
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-4px);
+    border-color: #52525b;
+  }
+
+  .timeline-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+  }
+
+  .timeline-img-wrapper img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+  }
+
+  .timeline-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-main);
+  }
+
+  .country-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  body.light-mode .country-badge {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* --- LİSANS BÖLÜMÜ --- */
+  .license-section {
+    display: none;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .license-icon {
+    width: 64px; height: 64px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 24px;
+    color: var(--text-main);
+  }
+
+  .license-section h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .license-section p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+
+  /* --- MODAL (LİNK KOPYALAMA VE HESAP) --- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+  
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal-content {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    padding: 32px 24px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+  }
+  .modal-close:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
+
+  .modal-title { text-align: center; font-size: 22px; font-weight: 700; margin-top: 10px; }
+  .modal-subtitle { text-align: center; color: var(--text-muted); font-size: 14px; margin-top: -16px; }
+
+  /* FL Tarzı URL Kopyalama Alanı */
+  .fl-copy-box {
+    background: #18181b; 
+    border: 2px solid #27272a;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .fl-copy-box.copied-state {
+    border-color: var(--success);
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+  }
+
+  .fl-url-text {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap; 
+    width: 100%;
+    overflow: hidden;
+    color: #a1a1aa;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .fl-logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    color: #fff;
+    font-style: italic;
+    flex-shrink: 0;
+    margin-right: 6px;
+  }
+
+  #modalUrlText {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .fl-copy-btn {
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+    width: 100%;
+  }
+
+  .fl-copy-btn:hover { background: #e4e4e7; }
+  .fl-copy-btn.copied { background: #ffffff; color: #000000; }
+
+  /* --- HESAP MODALI (E-POSTA VE ŞİFRE) --- */
+  .account-input {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: var(--text-main);
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 12px;
+  }
+  .account-input:focus { border-color: var(--text-muted); }
+  
+  .account-btn {
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .account-btn:hover { opacity: 0.8; }
+  .account-btn svg { width: 18px; height: 18px; }
+
+  .btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .btn-group .account-btn {
+    flex: 1;
+  }
+
+  .register-btn {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+  }
+  .register-btn:hover { background: var(--border); }
+
+  .guest-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px dashed var(--border);
+    margin-top: 12px;
+  }
+  .guest-btn:hover { color: var(--text-main); border-color: var(--text-muted); background: var(--bg-card); }
+
+  /* COOGLE BUTONU */
+  .google-btn {
+    background: #ffffff;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    margin-top: 10px;
+  }
+  .google-btn:hover { background: #f8f9fa; }
+  
+  body.light-mode .google-btn {
+    background: #ffffff;
+    border-color: #dadce0;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin: 12px 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+  }
+  .divider::before { margin-right: 10px; }
+  .divider::after { margin-left: 10px; }
+
+  .profile-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .logout-btn {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .logout-btn:hover { background: var(--border); }
+
+  .delete-btn {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+  }
+  .delete-btn:hover { background: #dc2626; }
+
+  .user-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .user-info-row:last-of-type {
+    border-bottom: none;
+    margin-bottom: 16px;
+  }
+  .user-info-label { color: var(--text-muted); font-size: 14px; }
+  .user-info-value { font-weight: 600; font-size: 15px; word-break: break-all;}
+  .premium-text { color: var(--premium); }
+
+  /* --- BÜYÜK FOTOĞRAF GÖRÜNTÜLEYİCİ (LIGHTBOX) --- */
+  .image-preview-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.2s ease;
+  }
+  .image-preview-modal.open { display: flex; }
+  
+  .image-preview-modal img {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+    animation: zoomIn 0.3s ease;
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .image-preview-modal .modal-close {
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 24px;
+  }
+  .image-preview-modal .modal-close:hover { background: #ef4444; border-color: #ef4444; }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 100px 16px 40px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .card { padding: 16px; }
+    .card-title { font-size: 15px; }
+    .modal-content { padding: 24px 16px; }
+    .license-section { padding: 24px 16px; }
+    
+    .timeline-grid { grid-template-columns: 1fr; }
+    .date-title { font-size: 16px; }
+    .timeline-card { padding: 24px 16px; }
+    
+    .profile-actions { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left" id="navHomeBtn">
+    <div class="nav-logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    FL Kits
+  </div>
+  <div class="nav-right">
+    <button class="nav-icon-btn" id="navSearchBtn" title="Ara">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <button class="nav-icon-btn" id="themeToggleBtn" title="Temayı Değiştir">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <a href="https://github.com/vegasDevelopment" target="_blank" class="nav-icon-btn" title="GitHub">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+    </a>
+    <button class="nav-icon-btn" id="accountBtn" title="Hesabım">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </button>
+    <button class="hamburger" id="hamburgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- SIDE MENU -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<aside class="side-menu" id="sideMenu">
+  <div class="side-menu-header">
+    Menü
+    <button class="close-menu" id="closeMenuBtn">×</button>
+  </div>
+  <a class="menu-item active" data-category="all">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Tümü (Ana Sayfa)
+  </a>
+  <a class="menu-item" data-category="kits">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+    Forma Kısmı
+  </a>
+  <a class="menu-item" data-category="logos">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Logo Kısmı
+  </a>
+  <a class="menu-item" data-category="new">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    Yeni Eklenenler
+  </a>
+  <a class="menu-item" data-category="national">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Milli Takım Formaları
+  </a>
+  
+  <!-- PREMIUM FORMA SEKMESİ -->
+  <a class="menu-item" data-category="premium">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>
+    Premium Formalar
+  </a>
+
+  <a class="menu-item" data-category="screenshots">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    Oyundan Görüntüler
+  </a>
+  <a class="menu-item" data-category="license">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Lisans
+  </a>
+</aside>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>Dünyanın En Büyük Forma Arşivi</h1>
+    <p>FL 26 Oyuncuları için binlerce yüksek çözünürlüklü forma ve logo arşivi. İstediğin tasarıma ulaş, tek tıkla kopyala ve oyununa aktar.</p>
+    
+    <div class="search-container">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="Takım, forma veya logo arayın...">
+    </div>
+
+    <div class="badges">
+      <span class="badge-item">
+        <svg class="text-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Yüksek Kalite
+      </span>
+      <span class="badge-item">
+        <svg class="text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        Orijinal Linkler
+      </span>
+      <span class="badge-item">
+        <svg class="text-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Ücretsiz Erişim
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+  
+  <!-- ÜLKELERE GÖRE LOGOLAR -->
+  <div class="country-logos-section" id="countryLogosSection">
+    <h3 class="country-logos-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Ülkelere Göre Logolar
+    </h3>
+    <div class="country-logos-grid" id="countryLogosGrid">
+      <!-- JavaScript ile doldurulacak -->
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2 id="sectionTitle">Tüm Koleksiyon</h2>
+  </div>
+
+  <div class="grid" id="kitGrid">
+    <!-- JavaScript ile doldurulacak -->
+  </div>
+
+  <div class="newly-added-section" id="newlyAddedSection">
+    <!-- JavaScript ile doldurulacak -->
+  </div>
+
+  <!-- LİSANS BÖLÜMÜ -->
+  <div class="license-section" id="licenseSection">
+    <div class="license-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h3>FL Kits Lisans Bilgileri</h3>
+    <p>Bu platformda yer alan tüm formalar, logolar ve görseller <strong>FL Kits</strong> mülkiyetindedir. Ticari veya kişisel projelerinizde kullanmadan önce izin almanız gerekmektedir.</p>
+    <p>İzinsiz kopyalama, çoğaltma, dağıtma veya satış yapılması kesinlikle yasaktır. Tüm hakları saklıdır. &copy; 2026 FL Kits.</p>
+    <p style="margin-top: 24px; font-size: 14px;">
+      Lisans ve kullanım şartları hakkında detaylı bilgi için iletişime geçebilirsiniz:<br>
+      <strong style="color: var(--text-main); font-size: 15px;">dappereiz2123@gmail.com</strong>
+    </p>
+  </div>
+</main>
+
+<!-- MODAL (LİNK KOPYALAMA İÇİN) -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalCloseBtn">×</button>
+    
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-subtitle" id="modalSubtitle"></div>
+
+    <div class="fl-copy-box" id="modalCopyBox">
+      <div class="fl-url-text">
+        <span class="fl-logo">FL</span>
+        <span id="modalUrlText"></span>
+      </div>
+      <button class="fl-copy-btn" id="modalCopyBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="modalCopyBtnText">Linki Kopyala</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- HESAP MODALI (GİRİŞ / KAYIT / MİSAFİR / COOGLE) -->
+<div class="modal-overlay" id="accountModal">
+  <div class="modal-content">
+    <button class="modal-close" id="accountCloseBtn">×</button>
+    
+    <div class="modal-title" id="accountModalTitle">Hesabım</div>
+    
+    <!-- Giriş Yapılmamışsa -->
+    <div id="loginSection">
+      <p class="modal-subtitle" style="margin-bottom: 24px;">Premium özellikler ve kalıcı kayıt için giriş yapın.</p>
+      
+      <!-- E-posta ve Şifre Inputları -->
+      <input type="email" id="emailInput" class="account-input" placeholder="E-posta Adresiniz">
+      <input type="password" id="passwordInput" class="account-input" placeholder="Şifreniz">
+      
+      <!-- 3 Seçenekli Buton Grubu -->
+      <div class="btn-group">
+        <button class="account-btn" id="loginBtn">
+          Giriş Yap
+        </button>
+        <button class="account-btn register-btn" id="registerBtn">
+          Hesap Oluştur
+        </button>
+      </div>
+      
+      <div class="divider">veya</div>
+      
+      <!-- YENİ: COOGLE İLE GİRİŞ BUTONU -->
+      <button class="account-btn google-btn" id="coogleLoginBtn">
+        <!-- İndirdiğin logoyu buraya bağlıyoruz -->
+        <img src="https://i.hizliresim.com/tcze03ry.jpg" alt="Coogle Logo" style="width: 20px; height: 20px; object-fit: contain;">
+        Coogle ile Giriş Yap
+      </button>
+
+      <button class="account-btn guest-btn" id="guestLoginBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Misafir Olarak Giriş
+      </button>
+    </div>
+
+    <!-- Giriş Yapılmışsa -->
+    <div id="profileSection" style="display: none;">
+      <div class="user-info-row">
+        <span class="user-info-label">E-posta</span>
+        <span class="user-info-value" id="profileEmail">-</span>
+      </div>
+      <div class="user-info-row">
+        <span class="user-info-label">Hesap Türü</span>
+        <span class="user-info-value" id="profileStatus">Normal Kullanıcı</span>
+      </div>
+      
+      <div class="profile-actions">
+        <button class="account-btn logout-btn" id="logoutBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Çıkış Yap
+        </button>
+        <button class="account-btn delete-btn" id="deleteAccountBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+          Hesabı Sil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BÜYÜK FOTOĞRAF GÖRÜNTÜLEYİCİ (LIGHTBOX) -->
+<div class="image-preview-modal" id="imagePreviewModal">
+  <button class="modal-close" id="imageModalCloseBtn">×</button>
+  <img id="fullSizeImage" src="" alt="Büyük Görüntü">
+</div>
+
+<script>
+  // DİKKAT: Eski verilerin korunması için değişken adı "eskiVeriler" olarak değiştirildi.
+  const eskiVeriler = [
+    // --- REDEX (Premium - 28 Ekim 2026) ---
+    { id: 48, team: 'Redex', label: 'Home Kit', sub: 'Premium', category: 'premium', url: 'https://cdn.phototourl.com/member/2026-10-28-206a2450-1664-4151-8257-0664f2784de8.jpg', date: 'October 28, 2026', country: 'Özel Takım', flag: '🛡️' },
+    { id: 49, team: 'Redex', label: 'Away Kit', sub: 'Premium', category: 'premium', url: 'https://cdn.phototourl.com/member/2026-10-28-6e22319c-299d-46fe-a1a5-2261cee8a546.jpg', date: 'October 28, 2026', country: 'Özel Takım', flag: '🛡️' },
+    { id: 50, team: 'Redex', label: 'GK Kit', sub: 'Premium', category: 'premium', url: 'https://cdn.phototourl.com/member/2026-10-28-9a5650db-df14-46ff-b34e-ab5f64796aa5.jpg', date: 'October 28, 2026', country: 'Özel Takım', flag: '🛡️' },
+    { id: 51, team: 'Redex', label: 'Kulüp Logosu', sub: 'Premium', category: 'premium', url: 'https://cdn.phototourl.com/member/2026-10-28-b92f3552-a06a-4aad-a4d6-035ff2f675ce.png', date: 'October 28, 2026', country: 'Özel Takım', flag: '🛡️' },
+
+    // --- ALMANYA MİLLİ TAKIMI (28 Ekim 2026) ---
+    { id: 43, team: 'Almanya Milli Takımı', label: 'Home Kit', sub: 'İç Saha', category: 'national', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0437-2026-3-uL3NxdT.png', date: 'October 28, 2026', country: 'Almanya', flag: '🇩🇪' },
+    { id: 44, team: 'Almanya Milli Takımı', label: 'Away Kit', sub: 'Deplasman', category: 'national', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0437-2627-12-YG2nK6J.png', date: 'October 28, 2026', country: 'Almanya', flag: '🇩🇪' },
+    { id: 45, team: 'Almanya Milli Takımı', label: 'GK Home', sub: 'Kaleci', category: 'national', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0437-2627-52-sNqQR3T.png', date: 'October 28, 2026', country: 'Almanya', flag: '🇩🇪' },
+    { id: 46, team: 'Almanya Milli Takımı', label: 'GK Away', sub: 'Deplasman Kaleci', category: 'national', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0437-2627-72-r2Hj98C.png', date: 'October 28, 2026', country: 'Almanya', flag: '🇩🇪' },
+    { id: 47, team: 'Almanya Milli Takımı', label: 'Takım Logosu', sub: 'Logo', category: 'logos', url: 'https://assets.football-logos.cc/logos/germany/512x512/germany-national-team.d354ad14.png', date: 'October 28, 2026', country: 'Almanya', flag: '🇩🇪' },
+
+    // --- PREMIUM FORMA ÖRNEKLERİ (Kategori: premium) ---
+    // Real Madrid
+    { id: 28, team: 'Real Madrid', label: 'Home Kit', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/ojywFyR.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 29, team: 'Real Madrid', label: 'Away Kit', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/n1sYhEX.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 30, team: 'Real Madrid', label: 'GK Home', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/9mSOVSJ.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 31, team: 'Real Madrid', label: 'GK Away', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/vqBLK8q.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 32, team: 'Real Madrid', label: 'Kulüp Logosu', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/kRzk9cs.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+
+    // Barcelona
+    { id: 33, team: 'Barcelona', label: 'Home Kit', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/ugCf9jv.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 34, team: 'Barcelona', label: 'Away Kit', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/c9fH0Oz.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 35, team: 'Barcelona', label: 'GK Home', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/VcnxrNW.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 36, team: 'Barcelona', label: 'GK Away', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/gb9sTlX.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+    { id: 37, team: 'Barcelona', label: 'Kulüp Logosu', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/odyzGBQ.png', date: 'October 28, 2026', country: 'İspanya', flag: '🇪🇸' },
+
+    // Arsenal
+    { id: 38, team: 'Arsenal', label: 'Home Kit', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/7F7lQuQ.png', date: 'October 28, 2026', country: 'İngiltere', flag: '🇬🇧' },
+    { id: 39, team: 'Arsenal', label: 'Away Kit', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/iGr6qtg.png', date: 'October 28, 2026', country: 'İngiltere', flag: '🇬🇧' },
+    { id: 40, team: 'Arsenal', label: 'GK Home', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/JqZHCSy.png', date: 'October 28, 2026', country: 'İngiltere', flag: '🇬🇧' },
+    { id: 41, team: 'Arsenal', label: 'GK Away', sub: 'Premium', category: 'premium', url: 'https://i.imgur.com/HxmWoPM.png', date: 'October 28, 2026', country: 'İngiltere', flag: '🇬🇧' },
+    { id: 42, team: 'Arsenal', label: 'Kulüp Logosu', sub: 'Premium', category: 'premium', url: 'https://assets.football-logos.cc/logos/england/512x512/arsenal.02d595b0.png', date: 'October 28, 2026', country: 'İngiltere', flag: '🇬🇧' },
+
+    // --- STANDART FORMA VE LOGOLAR (27 Ekim 2026) ---
+    { id: 1, team: 'Beşiktaş JK', label: 'Home Kit', sub: 'İç Saha', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0343-2627-1-YG2nK6J.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 2, team: 'Beşiktaş JK', label: 'Away Kit', sub: 'Deplasman', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0343-2627-2-bDd6mPd.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 3, team: 'Beşiktaş JK', label: 'GK Home', sub: 'Kaleci', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0343-2627-5-sNqQR3T.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 4, team: 'Beşiktaş JK', label: 'Kulüp Logosu', sub: 'Logo', category: 'logos', url: 'https://assets.football-logos.cc/logos/turkey/512x512/besiktas.0ec1a299.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 5, team: 'Galatasaray', label: 'Home Kit', sub: 'İç Saha', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0341-2627-1-YG2nK6J.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 6, team: 'Galatasaray', label: 'Away Kit', sub: 'Deplasman', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0341-2627-2-bDd6mPd.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 7, team: 'Galatasaray', label: 'Kulüp Logosu', sub: 'Logo', category: 'logos', url: 'https://media.publit.io/file/team-logo/team-341-2.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 8, team: 'Fenerbahçe', label: 'Home Kit', sub: 'İç Saha', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0342-2627-1-YG2nK6J.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 9, team: 'Fenerbahçe', label: 'Away Kit', sub: 'Deplasman', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0342-2627-2-bDd6mPd.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 10, team: 'Fenerbahçe', label: 'Third Kit', sub: 'Üçüncü', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0342-2627-3-uL3NxdT.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 11, team: 'Fenerbahçe', label: 'GK Home', sub: 'Kaleci', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0342-2627-5-sNqQR3T.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 12, team: 'Fenerbahçe', label: 'GK Away', sub: 'Deplasman Kaleci', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0342-2627-6-Be2Fcwh.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 13, team: 'Fenerbahçe', label: 'Kulüp Logosu', sub: 'Logo', category: 'logos', url: 'https://assets.football-logos.cc/logos/turkey/512x512/fenerbahce.ad038cac.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 14, team: 'Trabzonspor', label: 'Home Kit', sub: 'İç Saha', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0344-2627-1-YG2nK6J-rev1.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 15, team: 'Trabzonspor', label: 'Away Kit', sub: 'Deplasman', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0344-2627-3-uL3NxdT.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 16, team: 'Trabzonspor', label: 'GK Home', sub: 'Kaleci', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0344-2627-5-sNqQR3T.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 17, team: 'Trabzonspor', label: 'GK Away', sub: 'Deplasman Kaleci', category: 'kits', url: 'https://filedn.com/lw5L2a15yQaYkU2R1zp49Py/Image/FL/kitsHD/0344-2627-6-Be2Fcwh.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 18, team: 'Trabzonspor', label: 'Kulüp Logosu', sub: 'Logo', category: 'logos', url: 'https://assets.football-logos.cc/logos/turkey/512x512/trabzonspor.32812ba8.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    
+    // MİLLİ TAKIM (TÜRKİYE)
+    { id: 19, team: 'Türkiye Milli Takımı', label: 'Away Kit', sub: 'Deplasman', category: 'national', url: 'https://i.hizliresim.com/oxwasgzj.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 20, team: 'Türkiye Milli Takımı', label: 'Home Kit', sub: 'İç Saha', category: 'national', url: 'https://i.hizliresim.com/izi6sjww.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 21, team: 'Türkiye Milli Takımı', label: 'GK Home', sub: 'Kaleci', category: 'national', url: 'https://i.hizliresim.com/FS1nV5.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 22, team: 'Türkiye Milli Takımı', label: 'Takım Logosu', sub: 'Logo', category: 'logos', url: 'https://i.hizliresim.com/3ydQUk.png', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+
+    // OYUNDAN GÖRÜNTÜLER
+    { id: 23, team: 'Beşiktaş JK', label: 'Soyunma Odası', sub: 'Oyundan Görüntü', category: 'screenshots', url: 'https://cdn.phototourl.com/member/2026-10-27-ae04000b-ba2a-4f96-9581-e7509015d16a.jpg', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' },
+    { id: 24, team: 'Beşiktaş JK', label: 'Forma Seçimi', sub: 'Oyundan Görüntü', category: 'screenshots', url: 'https://cdn.phototourl.com/member/2026-10-27-243322a9-e85c-4bda-b26e-34114cd45ccf.jpg', date: 'October 27, 2026', country: 'Türkiye', flag: '🇹🇷' }
+  ];
+
+  let data = []; // API'den gelenler ve eski veriler burada birleşecek
+
+  const grid = document.getElementById('kitGrid');
+  const newlyAddedSection = document.getElementById('newlyAddedSection');
+  const licenseSection = document.getElementById('licenseSection');
+  const countryLogosSection = document.getElementById('countryLogosSection');
+  const countryLogosGrid = document.getElementById('countryLogosGrid');
+  
+  const searchInput = document.getElementById('searchInput');
+  const sectionTitle = document.getElementById('sectionTitle');
+  const menuItems = document.querySelectorAll('.menu-item');
+  
+  const detailModal = document.getElementById('detailModal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSubtitle = document.getElementById('modalSubtitle');
+  const modalUrlText = document.getElementById('modalUrlText');
+  const modalCopyBtn = document.getElementById('modalCopyBtn');
+  const modalCopyBox = document.getElementById('modalCopyBox');
+
+  // HESAP MODAL ELEMANLARI
+  const accountModal = document.getElementById('accountModal');
+  const accountBtn = document.getElementById('accountBtn');
+  const accountCloseBtn = document.getElementById('accountCloseBtn');
+  const loginSection = document.getElementById('loginSection');
+  const profileSection = document.getElementById('profileSection');
+  
+  const emailInput = document.getElementById('emailInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const loginBtn = document.getElementById('loginBtn');
+  const registerBtn = document.getElementById('registerBtn');
+  const guestLoginBtn = document.getElementById('guestLoginBtn');
+  const coogleLoginBtn = document.getElementById('coogleLoginBtn');
+  
+  const logoutBtn = document.getElementById('logoutBtn');
+  const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+  const profileEmail = document.getElementById('profileEmail');
+  const profileStatus = document.getElementById('profileStatus');
+
+  const imagePreviewModal = document.getElementById('imagePreviewModal');
+  const fullSizeImage = document.getElementById('fullSizeImage');
+  const imageModalCloseBtn = document.getElementById('imageModalCloseBtn');
+
+  let currentCategory = 'all';
+  let searchQuery = '';
+  let activeKitUrl = '';
+  let activeItemLabel = '';
+  
+  const PREMIUM_CODES = ['#Rw205', '#Rwz253', '#Hw305x', '#Dev2530']; 
+  const DEV_CODE = '#Dev2530';
+  let isPremiumUnlocked = false;
+  
+  // KULLANICI VERİ TABANI SİMÜLASYONU (LOCAL STORAGE)
+  let registeredUsers = JSON.parse(localStorage.getItem('flkits_users_db')) || [];
+  let currentUser = JSON.parse(localStorage.getItem('flkits_current_session')) || null;
+
+  const copyIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+
+  // Kullanıcı oturumunu kontrol et ve arayüzü güncelle
+  function checkAuth() {
+    if (currentUser) {
+      isPremiumUnlocked = currentUser.isPremium;
+      loginSection.style.display = 'none';
+      profileSection.style.display = 'block';
+      profileEmail.textContent = currentUser.email;
+      
+      if (currentUser.isPremium) {
+        profileStatus.textContent = 'Premium Üye';
+        profileStatus.classList.add('premium-text');
+      } else {
+        if (currentUser.isCoogle) profileStatus.textContent = 'Coogle Kullanıcısı';
+        else if (currentUser.isGoogle) profileStatus.textContent = 'Google Kullanıcısı';
+        else if (currentUser.isGuest) profileStatus.textContent = 'Misafir Kullanıcı';
+        else profileStatus.textContent = 'Normal Kullanıcı';
+        
+        profileStatus.classList.remove('premium-text');
+      }
+    } else {
+      isPremiumUnlocked = false;
+      loginSection.style.display = 'block';
+      profileSection.style.display = 'none';
+    }
+  }
+
+  // Hesap Modalını Aç/Kapat
+  accountBtn.addEventListener('click', () => {
+    checkAuth();
+    accountModal.classList.add('open');
+  });
+  accountCloseBtn.addEventListener('click', () => {
+    accountModal.classList.remove('open');
+  });
+  accountModal.addEventListener('click', (e) => {
+    if (e.target === accountModal) accountModal.classList.remove('open');
+  });
+
+  // --- GİRİŞ YAP ---
+  loginBtn.addEventListener('click', () => {
+    const email = emailInput.value.trim();
+    const pass = passwordInput.value.trim();
+
+    if (!email || !pass) {
+      alert("Lütfen e-posta ve şifre girin.");
+      return;
+    }
+
+    const user = registeredUsers.find(u => u.email === email && u.password === pass);
+
+    if (user) {
+      currentUser = { email: user.email, isPremium: user.isPremium, isGuest: false, isGoogle: false };
+      localStorage.setItem('flkits_current_session', JSON.stringify(currentUser));
+      
+      emailInput.value = '';
+      passwordInput.value = '';
+      
+      checkAuth();
+      accountModal.classList.remove('open');
+      render(); 
+    } else {
+      alert("Hatalı e-posta veya şifre!");
+    }
+  });
+
+  // --- HESAP OLUŞTUR (COOGLE API ENTEGRASYONLU) ---
+  registerBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    const pass = passwordInput.value.trim();
+
+    if (!email || !pass) {
+      alert("Lütfen bir e-posta ve şifre belirleyin.");
+      return;
+    }
+
+    if (registeredUsers.some(u => u.email === email)) {
+      alert("Bu e-posta adresi FL Kits'te zaten kayıtlı. Lütfen giriş yapın.");
+      return;
+    }
+
+    // Butonu kilitle
+    const originalText = registerBtn.innerHTML;
+    registerBtn.disabled = true;
+    registerBtn.innerHTML = 'Oluşturuluyor...';
+
+    try {
+      // 1. Coogle API'sine kayıt isteği at
+      const response = await fetch('https://coogle-auth.vercel.app/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          email: email, 
+          password: pass, 
+          displayName: email.split('@')[0] 
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok || response.status === 409) { 
+        // 200 OK (başarılı) veya 409 Conflict (Coogle'da zaten var) ise devam et
+        
+        const newUser = { email: email, password: pass, isPremium: false };
+        registeredUsers.push(newUser);
+        localStorage.setItem('flkits_users_db', JSON.stringify(registeredUsers));
+
+        currentUser = { 
+          email: email, 
+          isPremium: false, 
+          isGuest: false, 
+          isGoogle: false,
+          isCoogle: true
+        };
+        localStorage.setItem('flkits_current_session', JSON.stringify(currentUser));
+        
+        emailInput.value = '';
+        passwordInput.value = '';
+        
+        checkAuth();
+        accountModal.classList.remove('open');
+        render();
+        
+        if (response.ok) {
+          alert("Harika! Hem FL Kits hem de Coogle hesabınız başarıyla oluşturuldu.");
+        } else if (response.status === 409) {
+          alert("Hesabınız FL Kits'te oluşturuldu. (Not: Coogle sisteminde zaten bir hesap mevcut).");
+        }
+      } else {
+        alert("Hesap oluşturulamadı: " + (data.error || "Sunucu hatası"));
+      }
+    } catch (error) {
+      console.error("Coogle Signup Hatası:", error);
+      alert("Coogle sunucusuna bağlanılamadı. Lütfen daha sonra tekrar deneyin.");
+    } finally {
+      registerBtn.disabled = false;
+      registerBtn.innerHTML = originalText;
+    }
+  });
+
+  // --- COOGLE İLE GİRİŞ (GERÇEK API ENTEGRASYONU) ---
+  coogleLoginBtn.addEventListener('click', async () => {
+    const originalText = coogleLoginBtn.innerHTML;
+    coogleLoginBtn.disabled = true;
+    coogleLoginBtn.innerHTML = 'Coogle\'a Bağlanılıyor...';
+
+    try {
+      const response = await fetch('https://coogle-auth.vercel.app/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ token: '#Coogle29.10.26' })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        const coogleEmail = data.user.email;
+        
+        let user = registeredUsers.find(u => u.email === coogleEmail);
+        
+        if (!user) {
+          user = { email: coogleEmail, password: "coogle_auth", isPremium: false };
+          registeredUsers.push(user);
+          localStorage.setItem('flkits_users_db', JSON.stringify(registeredUsers));
+        }
+
+        currentUser = { 
+          email: user.email, 
+          isPremium: user.isPremium, 
+          isGuest: false,
+          isGoogle: false,
+          isCoogle: true
+        };
+        
+        localStorage.setItem('flkits_current_session', JSON.stringify(currentUser));
+        
+        checkAuth();
+        accountModal.classList.remove('open');
+        render(); 
+        alert(`Coogle hesabı ile giriş yapıldı!\nHoş geldin: ${coogleEmail}`);
+
+      } else {
+        if (response.status === 404) {
+          // Dışarı yönlendirmek yerine kullanıcıyı uyarıyoruz
+          alert("Hata: Coogle sisteminde henüz bir hesap oluşturulmamış!\n\nLütfen yukarıdaki 'Hesap Oluştur' butonunu kullanarak yeni bir hesap açın.");
+        } else {
+          alert("Coogle girişi başarısız: " + (data.error || "Bilinmeyen bir hata"));
+        }
+      }
+    } catch (error) {
+      console.error("Coogle API Hatası:", error);
+      alert("Sunucuya bağlanılamadı. İnternet bağlantınızı kontrol edin veya daha sonra tekrar deneyin.");
+    } finally {
+      coogleLoginBtn.disabled = false;
+      coogleLoginBtn.innerHTML = originalText;
+    }
+  });
+
+  // --- MİSAFİR GİRİŞİ ---
+  guestLoginBtn.addEventListener('click', () => {
+    const randomId = Math.floor(1000 + Math.random() * 9000);
+    currentUser = { 
+      email: `misafir_${randomId}@flkits.com`, 
+      isPremium: false,
+      isGuest: true,
+      isGoogle: false
+    };
+    
+    localStorage.setItem('flkits_current_session', JSON.stringify(currentUser));
+    
+    checkAuth();
+    accountModal.classList.remove('open');
+    render(); 
+  });
+
+  // --- ÇIKIŞ YAP ---
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('flkits_current_session');
+    currentUser = null;
+    checkAuth();
+    accountModal.classList.remove('open');
+    render(); 
+  });
+
+  // --- HESABI SİL (API ENTEGRASYONLU) ---
+  deleteAccountBtn.addEventListener('click', async () => {
+    if (confirm("Hesabınızı tamamen silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve Coogle sistemindeki hesabınız da silinir.")) {
+      
+      const originalText = deleteAccountBtn.innerHTML;
+      deleteAccountBtn.disabled = true;
+      deleteAccountBtn.innerHTML = 'Siliniyor...';
+
+      try {
+        // 1. Coogle API'sinden hesabı sil
+        const response = await fetch('https://coogle-auth.vercel.app/api/delete', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ token: '#Coogle29.10.26' })
+        });
+
+        // 2. Yerel hafızayı temizle (API başarılı olsa da olmasa da)
+        if (currentUser && !currentUser.isGuest) {
+          registeredUsers = registeredUsers.filter(u => u.email !== currentUser.email);
+          localStorage.setItem('flkits_users_db', JSON.stringify(registeredUsers));
+        }
+        
+        localStorage.removeItem('flkits_current_session');
+        currentUser = null;
+        
+        checkAuth();
+        accountModal.classList.remove('open');
+        render();
+        
+        if (response.ok) {
+          alert("Hesabınız hem FL Kits'ten hem de Coogle sisteminden başarıyla silindi.");
+        } else {
+          alert("Yerel hesabınız silindi ancak Coogle sunucusunda bir sorun oluştu. (API'de zaten hesap olmayabilir).");
+        }
+
+      } catch (error) {
+        console.error("Silme hatası:", error);
+        alert("Sunucuya ulaşılamadı, ancak yerel hesabınız bu cihazdan silindi.");
+        
+        // Hata durumunda bile yerel veriyi temizle
+        if (currentUser && !currentUser.isGuest) {
+          registeredUsers = registeredUsers.filter(u => u.email !== currentUser.email);
+          localStorage.setItem('flkits_users_db', JSON.stringify(registeredUsers));
+        }
+        localStorage.removeItem('flkits_current_session');
+        currentUser = null;
+        checkAuth();
+        accountModal.classList.remove('open');
+        render();
+      } finally {
+        deleteAccountBtn.disabled = false;
+        deleteAccountBtn.innerHTML = originalText;
+      }
+    }
+  });
+
+  // --- ÜLKELERE GÖRE LOGO SAYILARINI HESAPLA VE EKRANA BAS ---
+  function renderCountryLogos() {
+    const logos = data.filter(item => item.category === 'logos');
+    
+    const counts = {};
+    logos.forEach(item => {
+      const country = item.country || 'Bilinmeyen';
+      const flag = item.flag || '🏳️';
+      if (!counts[country]) {
+        counts[country] = { count: 0, flag: flag };
+      }
+      counts[country].count++;
+    });
+
+    countryLogosGrid.innerHTML = '';
+    
+    const sortedCountries = Object.keys(counts)
+      .map(key => ({ name: key, count: counts[key].count, flag: counts[key].flag }))
+      .sort((a, b) => b.count - a.count);
+
+    sortedCountries.forEach(c => {
+      const card = document.createElement('div');
+      card.className = 'country-card';
+      card.innerHTML = `
+        <span class="country-flag">${c.flag}</span>
+        <div class="country-info">
+          <span class="country-name">${c.name}</span>
+          <span class="country-count">${c.count} Logo</span>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        currentCategory = 'logos';
+        
+        menuItems.forEach(i => i.classList.remove('active'));
+        document.querySelector('[data-category="logos"]').classList.add('active');
+        
+        searchInput.value = c.name;
+        searchQuery = c.name;
+        
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
+      });
+      countryLogosGrid.appendChild(card);
+    });
+  }
+
+  function render() {
+    if (currentCategory === 'all' && searchQuery.trim() === '') {
+      countryLogosSection.style.display = 'block';
+      renderCountryLogos(); 
+    } else {
+      countryLogosSection.style.display = 'none';
+    }
+
+    if (currentCategory === 'license') {
+      grid.style.display = 'none';
+      newlyAddedSection.style.display = 'none';
+      licenseSection.style.display = 'block';
+      sectionTitle.textContent = 'Lisans Bilgileri';
+      return;
+    }
+
+    if (currentCategory === 'new' && searchQuery.trim() === '') {
+      grid.style.display = 'none';
+      licenseSection.style.display = 'none';
+      newlyAddedSection.style.display = 'block';
+      sectionTitle.textContent = 'Yeni Eklenenler';
+      renderTimeline();
+      return;
+    }
+
+    if (currentCategory === 'premium') {
+      if (!isPremiumUnlocked) {
+        if (!currentUser) {
+          alert("Bu alana erişmek için lütfen giriş yapın, Coogle ile giriş yapın veya misafir olarak devam edin.");
+          accountBtn.click(); 
+          document.querySelector('[data-category="all"]').click(); 
+          return;
+        } else {
+          const pass = prompt("Premium'a geçmek için şifreyi girin:");
+          
+          if (PREMIUM_CODES.includes(pass)) {
+            isPremiumUnlocked = true;
+            currentUser.isPremium = true;
+            localStorage.setItem('flkits_current_session', JSON.stringify(currentUser)); 
+            
+            if (!currentUser.isGuest) {
+              const userIndex = registeredUsers.findIndex(u => u.email === currentUser.email);
+              if (userIndex !== -1) {
+                registeredUsers[userIndex].isPremium = true;
+                localStorage.setItem('flkits_users_db', JSON.stringify(registeredUsers));
+              }
+            }
+            
+            checkAuth(); 
+            alert("Tebrikler! Artık Premium üyesiniz.");
+          } else {
+            alert("Hatalı şifre! Ana sayfaya yönlendiriliyorsunuz.");
+            document.querySelector('[data-category="all"]').click();
+            return;
+          }
+        }
+      }
+      
+      grid.style.display = 'grid';
+      licenseSection.style.display = 'none';
+      newlyAddedSection.style.display = 'none';
+      grid.innerHTML = '';
+      
+      sectionTitle.textContent = 'Premium Formalar (PRO)';
+      const premiumItems = data.filter(item => item.category === 'premium');
+      
+      premiumItems.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'card premium-card';
+        card.innerHTML = `
+          <div class="pro-badge">PRO</div>
+          <button class="copy-btn" title="Linki Kopyala">${copyIcon}</button>
+          <div class="card-img-wrapper">
+            <img src="${item.url}" alt="${item.team} ${item.label}" loading="lazy">
+          </div>
+          <h3 class="card-title">${item.team}</h3>
+          <p class="card-subtitle">${item.label} - ${item.sub}</p>
+        `;
+        
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.copy-btn')) return;
+          openModal(item);
+        });
+
+        const copyBtn = card.querySelector('.copy-btn');
+        copyBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          copyLink(item.url, copyBtn);
+        });
+
+        grid.appendChild(card);
+      });
+      return;
+    }
+
+    grid.style.display = 'grid';
+    licenseSection.style.display = 'none';
+    newlyAddedSection.style.display = 'none';
+    grid.innerHTML = '';
+
+    if (currentCategory === 'screenshots') {
+      sectionTitle.textContent = 'Oyundan Görüntüler';
+      const screenshots = data.filter(item => item.category === 'screenshots');
+      
+      if (screenshots.length === 0) {
+        grid.innerHTML = `<div class="empty-state">Henüz oyundan görüntü eklenmedi.</div>`;
+        return;
+      }
+
+      screenshots.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'card screenshot-card';
+        card.innerHTML = `
+          <div class="card-img-wrapper">
+            <img src="${item.url}" alt="${item.label}" loading="lazy">
+          </div>
+          <h3 class="card-title">${item.team}</h3>
+          <p class="card-subtitle">${item.label}</p>
+        `;
+        card.addEventListener('click', () => openImagePreview(item.url));
+        grid.appendChild(card);
+      });
+      return;
+    }
+    
+    let filtered = data;
+    
+    if (currentCategory === 'all') {
+      filtered = filtered.filter(item => item.category !== 'screenshots' && item.category !== 'premium');
+    } else {
+      filtered = filtered.filter(item => item.category === currentCategory);
+    }
+    
+    if (searchQuery.trim() !== '') {
+      const q = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(item => {
+        if (item.category === 'screenshots' || item.category === 'premium') return false; 
+        return item.team.toLowerCase().includes(q) || 
+               item.label.toLowerCase().includes(q) ||
+               item.sub.toLowerCase().includes(q) ||
+               item.country.toLowerCase().includes(q);
+      });
+      sectionTitle.textContent = `"${searchQuery}" için sonuçlar`;
+    } else {
+      if(currentCategory === 'kits') sectionTitle.textContent = 'Formalar';
+      else if(currentCategory === 'logos') sectionTitle.textContent = 'Kulüp Logoları';
+      else if(currentCategory === 'national') sectionTitle.textContent = 'Milli Takım Formaları';
+      else sectionTitle.textContent = 'Tüm Koleksiyon';
+    }
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div class="empty-state">Bu kategoriye ait henüz içerik eklenmedi.</div>`;
+      return;
+    }
+
+    filtered.forEach((item) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      
+      card.innerHTML = `
+        <button class="copy-btn" title="Linki Kopyala">${copyIcon}</button>
+        <div class="card-img-wrapper">
+          <img src="${item.url}" alt="${item.team} ${item.label}" loading="lazy">
+        </div>
+        <h3 class="card-title">${item.team}</h3>
+        <p class="card-subtitle">${item.label} - ${item.sub}</p>
+      `;
+      
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.copy-btn')) return;
+        openModal(item);
+      });
+
+      const copyBtn = card.querySelector('.copy-btn');
+      copyBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        copyLink(item.url, copyBtn);
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
+  function renderTimeline() {
+    newlyAddedSection.innerHTML = '';
+    const timelineItems = data.filter(item => item.date && item.category !== 'screenshots' && item.category !== 'premium');
+    const grouped = {};
+    timelineItems.forEach(item => {
+      if (!grouped[item.date]) grouped[item.date] = [];
+      grouped[item.date].push(item);
+    });
+
+    const sortedDates = Object.keys(grouped).sort((a, b) => new Date(b) - new Date(a));
+
+    sortedDates.forEach(date => {
+      const items = grouped[date];
+      const groupDiv = document.createElement('div');
+      groupDiv.className = 'date-group';
+      groupDiv.innerHTML = `
+        <div class="date-header">
+          <div class="date-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>${date}</span>
+          </div>
+          <div class="date-line"></div>
+          <div class="date-count">${items.length} içerik</div>
+        </div>
+        <div class="timeline-grid"></div>
+      `;
+      
+      const tGrid = groupDiv.querySelector('.timeline-grid');
+      
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'timeline-card';
+        card.innerHTML = `
+          <div class="timeline-img-wrapper">
+            <img src="${item.url}" alt="${item.team} ${item.label}">
+          </div>
+          <h3 class="timeline-title">${item.team}</h3>
+          <div class="country-badge">
+            <span>${item.flag}</span> ${item.country}
+          </div>
+        `;
+        
+        card.addEventListener('click', () => openModal(item));
+        tGrid.appendChild(card);
+      });
+      
+      newlyAddedSection.appendChild(groupDiv);
+    });
+  }
+
+  function openModal(item) {
+    activeKitUrl = item.url;
+    activeItemLabel = item.label;
+    modalTitle.textContent = `${item.team} - ${item.label}`;
+    modalSubtitle.textContent = item.sub;
+    modalUrlText.textContent = item.url;
+    
+    modalCopyBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span id="modalCopyBtnText">${item.label} Linkini Kopyala</span>`;
+    
+    modalCopyBox.classList.remove('copied-state');
+
+    detailModal.classList.add('open');
+  }
+
+  function closeModal() {
+    detailModal.classList.remove('open');
+  }
+
+  modalCloseBtn.addEventListener('click', closeModal);
+  detailModal.addEventListener('click', (e) => {
+    if (e.target === detailModal) closeModal();
+  });
+
+  modalCopyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(activeKitUrl);
+      modalCopyBox.classList.add('copied-state'); 
+      setTimeout(() => {
+        modalCopyBox.classList.remove('copied-state'); 
+      }, 2000);
+    } catch (err) {
+      const textArea = document.createElement("textarea");
+      textArea.value = activeKitUrl;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      textArea.remove();
+      
+      modalCopyBox.classList.add('copied-state'); 
+      setTimeout(() => {
+        modalCopyBox.classList.remove('copied-state');
+      }, 2000);
+    }
+  });
+
+  function openImagePreview(imageUrl) {
+    fullSizeImage.src = imageUrl;
+    imagePreviewModal.classList.add('open');
+  }
+
+  function closeImagePreview() {
+    imagePreviewModal.classList.remove('open');
+  }
+
+  imageModalCloseBtn.addEventListener('click', closeImagePreview);
+  imagePreviewModal.addEventListener('click', (e) => {
+    if (e.target === imagePreviewModal) closeImagePreview();
+  });
+
+  function copyLink(url, btnElement) {
+    navigator.clipboard.writeText(url).then(() => {
+      if (btnElement) {
+        btnElement.classList.add('copied');
+        setTimeout(() => {
+          btnElement.classList.remove('copied');
+        }, 2000);
+      }
+    }).catch(() => {
+        const textArea = document.createElement("textarea");
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+        
+        if (btnElement) {
+          btnElement.classList.add('copied');
+          setTimeout(() => {
+            btnElement.classList.remove('copied');
+          }, 2000);
+        }
+    });
+  }
+
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  const sideMenu = document.getElementById('sideMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+
+  function toggleMenu() {
+    sideMenu.classList.toggle('open');
+    menuOverlay.classList.toggle('open');
+  }
+
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  closeMenuBtn.addEventListener('click', toggleMenu);
+  menuOverlay.addEventListener('click', toggleMenu);
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      
+      currentCategory = item.getAttribute('data-category');
+      searchInput.value = '';
+      searchQuery = '';
+      
+      render();
+      toggleMenu();
+    });
+  });
+
+  document.getElementById('navSearchBtn').addEventListener('click', () => {
+    searchInput.focus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    if (searchQuery.trim() !== '') {
+      currentCategory = 'all';
+      menuItems.forEach(i => i.classList.remove('active'));
+      document.querySelector('[data-category="all"]').classList.add('active');
+    }
+    render();
+  });
+
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+
+  themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    
+    if (document.body.classList.contains('light-mode')) {
+      themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+    } else {
+      themeIcon.innerHTML = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+    }
+  });
+
+  document.getElementById('navHomeBtn').addEventListener('click', () => {
+    currentCategory = 'all';
+    searchInput.value = '';
+    searchQuery = '';
+    menuItems.forEach(i => i.classList.remove('active'));
+    document.querySelector('[data-category="all"]').classList.add('active');
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // --- API'DEN VERİ ÇEKME VE ESKİ VERİLERLE BİRLEŞTİRME ---
+  async function verileriYukle() {
+    // Önce eski verileri yükle
+    data = [...eskiVeriler];
+
+    try {
+      // API'den yeni eklenenleri çek
+      const response = await fetch('https://flkits-api.vercel.app/api/kits');
+      const result = await response.json();
+      
+      if (result.success && result.data && result.data.length > 0) {
+        // API'den gelenleri EN BAŞA koy (Yeni eklenenler en üstte görünsün)
+        data = [...result.data, ...data];
+      }
+    } catch (error) {
+      console.error("API'ye bağlanılamadı, sadece eski formalar gösteriliyor:", error);
+    }
+
+    // Her durumda siteyi çiz
+    checkAuth();
+    render();
+  }
+
+  // Sayfa yüklendiğinde çalıştır
+  verileriYukle();
+</script>
+</body>
+</html>
