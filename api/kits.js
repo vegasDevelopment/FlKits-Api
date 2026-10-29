@@ -9,26 +9,23 @@ export default async function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // VERİLERİ GETİR
-  if (req.method === 'GET') {
   // 1. VERİLERİ GETİR
-if (req.method === 'GET') {
-  try {
-    let kits = await redis.get('flkits_data') || [];
-    return res.status(200).json({ success: true, data: kits });
-  } catch (error) {
-    // Hata detayını konsola ve ekrana yazdırıyoruz
-    console.error("REDIS HATASI:", error);
-    return res.status(500).json({ error: 'Veriler çekilemedi', detay: error.message });
+  if (req.method === 'GET') {
+    try {
+      let kits = await redis.get('flkits_data') || [];
+      return res.status(200).json({ success: true, data: kits });
+    } catch (error) {
+      console.error("REDIS HATASI:", error);
+      return res.status(500).json({ error: 'Veriler çekilemedi', detay: error.message });
+    }
   }
-}
-    
-  // YENİ EKLE
+
+  // 2. YENİ EKLE
   if (req.method === 'POST') {
     const { token, team, label, sub, category, url, country, flag } = req.body;
 
     if (token !== '#Coogle29.10.26') {
-      return res.status(401).json({ error: 'Yetkisiz işlem.' });
+      return res.status(401).json({ error: 'Yetkisiz işlem. Token geçersiz.' });
     }
 
     try {
@@ -53,11 +50,12 @@ if (req.method === 'GET') {
 
       return res.status(200).json({ success: true, kit: newKit });
     } catch (error) {
-      return res.status(500).json({ error: 'Forma eklenemedi' });
+      console.error("REDIS HATASI:", error);
+      return res.status(500).json({ error: 'Forma eklenemedi', detay: error.message });
     }
   }
 
-  // SİL
+  // 3. SİL
   if (req.method === 'DELETE') {
     const { token, id } = req.body;
     if (token !== '#Coogle29.10.26') return res.status(401).json({ error: 'Yetkisiz işlem.' });
@@ -68,7 +66,10 @@ if (req.method === 'GET') {
       await redis.set('flkits_data', kits);
       return res.status(200).json({ success: true });
     } catch (error) {
-      return res.status(500).json({ error: 'Silinemedi' });
+      console.error("REDIS HATASI:", error);
+      return res.status(500).json({ error: 'Silinemedi', detay: error.message });
     }
   }
+
+  return res.status(405).json({ error: 'Metot desteklenmiyor' });
 }
