@@ -51,8 +51,8 @@ async function formaEkle() {
   };
 
   try {
-    // DİKKAT: Aşağıdaki linki Vercel'den aldıktan sonra güncelleyeceğiz!
-    const res = await fetch('https://BURAYA_VERCEL_LINKINI_YAZ.vercel.app/api/kits', {
+    // YENİ VERCEL LİNKİMİZ BURAYA EKLENDİ
+    const res = await fetch('https://flkits-api.vercel.app/api/kits', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -62,7 +62,7 @@ async function formaEkle() {
       mesaj.style.color = '#22c55e'; mesaj.innerText = '✓ Başarıyla eklendi!';
       document.querySelectorAll('input').forEach(i => i.value = '');
     } else {
-      mesaj.style.color = '#ef4444'; mesaj.innerText = '✗ Bir hata oluştu.';
+      mesaj.style.color = '#ef4444'; mesaj.innerText = '✗ Hata oluştu (Token veya veritabanı).';
     }
   } catch (err) {
     mesaj.style.color = '#ef4444'; mesaj.innerText = '✗ Sunucuya bağlanılamadı.';
