@@ -11,14 +11,18 @@ export default async function handler(req, res) {
 
   // VERİLERİ GETİR
   if (req.method === 'GET') {
-    try {
-      let kits = await redis.get('flkits_data') || [];
-      return res.status(200).json({ success: true, data: kits });
-    } catch (error) {
-      return res.status(500).json({ error: 'Veriler çekilemedi' });
-    }
+  // 1. VERİLERİ GETİR
+if (req.method === 'GET') {
+  try {
+    let kits = await redis.get('flkits_data') || [];
+    return res.status(200).json({ success: true, data: kits });
+  } catch (error) {
+    // Hata detayını konsola ve ekrana yazdırıyoruz
+    console.error("REDIS HATASI:", error);
+    return res.status(500).json({ error: 'Veriler çekilemedi', detay: error.message });
   }
-
+}
+    
   // YENİ EKLE
   if (req.method === 'POST') {
     const { token, team, label, sub, category, url, country, flag } = req.body;
